@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "194401610944",
+    "firebase_url": "https://health-app-android.firebaseio.com",
+    "project_id": "health-app-android",
+    "storage_bucket": "health-app-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:194401610944:android:797fa54d3a9032a9485125",
+        "android_client_info": {
+          "package_name": "au.edu.unsw.infs3634.gamifiedlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194401610944-fspj38k371hbrkl8hqth34jcib0h4je6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6iTZxkpM0mJS-uo6Tsg_IZvmNbn19fQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194401610944-fspj38k371hbrkl8hqth34jcib0h4je6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
