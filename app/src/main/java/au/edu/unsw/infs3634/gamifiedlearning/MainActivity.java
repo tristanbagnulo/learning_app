@@ -20,15 +20,15 @@ public class MainActivity extends AppCompatActivity {
         btDetailActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDetailActivity();
+                openNextActivity();
 
             }
         });
 
     }
 
-    public void openDetailActivity(){
-        Intent intent = new Intent(this, DetailActivity.class);
+    public void openNextActivity(){
+        Intent intent = new Intent(this, EmailPasswordActivity.class);
         startActivity(intent);
     }
 
