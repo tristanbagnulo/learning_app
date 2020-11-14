@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -110,9 +111,36 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            //Create the User object
                             User user = new User(getFullName(),getEmail(),getAge());
 
-                            FirebaseDatabase.getInstance()
+                            //Now send that object to the Realtime Database
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    //Get registered user's ID and set it the the User object
+                                    //so that they're connected
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    //pass the user object. OnCompleteListener is used to Check if
+                                    //the data was added to the database.
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                //Inside OnCompleteListener you must complete that
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(RegistrationActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+
+                                        //Then redirect to login layout
+                                    } else {
+                                        Toast.makeText(RegistrationActivity.this,"Failed to register. Try again.", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+
+                                }
+                            });
+                        } else {
+                            Toast.makeText(RegistrationActivity.this,"Failed to register. Try again.", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
