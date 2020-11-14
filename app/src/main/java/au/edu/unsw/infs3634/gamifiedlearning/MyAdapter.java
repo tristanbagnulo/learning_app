@@ -42,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return modules.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -57,5 +57,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
 
+    }
+
+    public interface OnClickListener{
+        void onClick(int position);
     }
 }

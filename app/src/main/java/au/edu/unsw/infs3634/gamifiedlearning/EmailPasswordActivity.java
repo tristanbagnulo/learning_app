@@ -53,6 +53,8 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
     }
 
     @Override
@@ -104,6 +106,10 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             }
         });
 
+    }
+
+    public interface OnClickListener{
+        void onClick(int position);
     }
 
     /*

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -23,6 +24,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         mRecyclerView.setAdapter(myAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public void onClick(int position){
+        Intent intent = new Intent(this, ModuleActivity.class);
     }
 
 
