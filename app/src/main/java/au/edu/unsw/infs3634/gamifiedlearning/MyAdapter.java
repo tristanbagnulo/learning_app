@@ -62,14 +62,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View v) {
-            onClickListener.onClick(getAdapterPosition());
+
+            onClickListener.onClick(getAdapterPosition()/*, v, v.getTag().toString()*/);
         }
     }
 
     public interface OnClickListener{
-        void onClick(int position);
+        void onClick(int position/*, View v, String name*/);
     }
 }

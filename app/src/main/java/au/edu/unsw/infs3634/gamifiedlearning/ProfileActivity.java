@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnCl
     }
 
     //@Override
-    public void onClick(int position){
+    public void onClick(int position/*, View v, String name*/){
         Log.d("TAG", "onClick: clicked.");
         modules.get(position);
         Intent intent = new Intent(this, ModuleActivity.class);
