@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class ProfileActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnClickListener {
+
+    private ArrayList<Module> modules = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private MyAdapter myAdapter;
 
@@ -26,9 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    @Override
+    //@Override
     public void onClick(int position){
+        modules.get(position);
         Intent intent = new Intent(this, ModuleActivity.class);
+        startActivity(intent);
     }
 
 

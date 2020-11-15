@@ -45,18 +45,26 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return modules.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements OnClickListener{
 
         TextView tvModuleName;
         ImageView ivModuleIcon;
+        OnClickListener onClickListener;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             tvModuleName = itemView.findViewById(R.id.tvModuleName);
             ivModuleIcon = itemView.findViewById(R.id.ivModuleIcon);
+            this.onClickListener = onClickListener;
+
+            itemView.setOnClickListener((View.OnClickListener) this);
         }
 
 
+        @Override
+        public void onClick(int position) {
+            onClickListener.onClick(getAdapterPosition());
+        }
     }
 
     public interface OnClickListener{
