@@ -47,7 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return modules.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements OnClickListener{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvModuleName;
         ImageView ivModuleIcon;
@@ -59,12 +59,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             ivModuleIcon = itemView.findViewById(R.id.ivModuleIcon);
             this.onClickListener = onClickListener;
 
-            itemView.setOnClickListener((View.OnClickListener) this);
+            itemView.setOnClickListener(this);
         }
 
 
         @Override
-        public void onClick(int position) {
+        public void onClick(View v) {
             onClickListener.onClick(getAdapterPosition());
         }
     }

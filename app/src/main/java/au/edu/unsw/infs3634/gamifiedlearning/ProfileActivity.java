@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnClickListener {
 
-    private ArrayList<Module> modules = new ArrayList<>();
+    private ArrayList<Module> modules = Module.getModules();
     private RecyclerView mRecyclerView;
     private MyAdapter myAdapter;
 
