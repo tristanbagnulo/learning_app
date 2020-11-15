@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnCl
         mRecyclerView = findViewById(R.id.rvList);
         mRecyclerView.setHasFixedSize(true);
 
-        myAdapter = new MyAdapter(this, Module.getModules());
+        myAdapter = new MyAdapter(this, Module.getModules(), this);
 
         mRecyclerView.setAdapter(myAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -31,8 +32,10 @@ public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnCl
 
     //@Override
     public void onClick(int position){
+        Log.d("TAG", "onClick: clicked.");
         modules.get(position);
         Intent intent = new Intent(this, ModuleActivity.class);
+        //intent.putExtra("some_object", )
         startActivity(intent);
     }
 

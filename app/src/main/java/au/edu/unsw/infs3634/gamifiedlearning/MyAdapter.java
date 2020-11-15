@@ -15,11 +15,13 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<Module> modules;
+    private OnClickListener mOnClickListener;
     private Context context;
 
-    public MyAdapter(Context context, ArrayList<Module> modules){
+    public MyAdapter(Context context, ArrayList<Module> modules, OnClickListener onClickListener){
         this.modules = modules;
         this.context = context;
+        this.mOnClickListener = onClickListener;
     }
 
     @NonNull
@@ -27,7 +29,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.my_row, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, mOnClickListener);
     }
 
 
@@ -51,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         ImageView ivModuleIcon;
         OnClickListener onClickListener;
 
-        public MyViewHolder(@NonNull View itemView){
+        public MyViewHolder(@NonNull View itemView, OnClickListener onClickListener){
             super(itemView);
             tvModuleName = itemView.findViewById(R.id.tvModuleName);
             ivModuleIcon = itemView.findViewById(R.id.ivModuleIcon);
