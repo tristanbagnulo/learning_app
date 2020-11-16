@@ -34,9 +34,10 @@ public class ProfileActivity extends AppCompatActivity implements MyAdapter.OnCl
     //@Override
     public void onClick(int position/*, View v, String name*/){
         Log.d("TAG", "onClick: clicked.");
-        modules.get(position);
+        String name = modules.get(position).getModuleName();
+        Log.d("TAG", "DATA RECEIVED: "+name);
         Intent intent = new Intent(this, ModuleActivity.class);
-        //intent.putExtra("some_object", )
+        intent.putExtra("Module Name", name);
         startActivity(intent);
     }
 

@@ -40,6 +40,8 @@ public class Module {
     public static ArrayList <Module> getModules() {
         ArrayList<Module> modules = new ArrayList<>();
         modules.add(new Module("Heart", "How to look after your heart health", R.drawable.heart));
+        modules.add(new Module("Muscle", "How to look after your muscular health", R.drawable.muscle));
+        modules.add(new Module("Mental", "How to look after your mental health", R.drawable.mentalhealth));
 
         return modules;
     }
