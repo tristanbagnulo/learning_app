@@ -58,6 +58,7 @@ public class QuestionsAndAnswerSet {
         ArrayList<QuestionsAndAnswerSet> questionsAndAnswerSets = new ArrayList<>();
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What is the key predictor of your cardio vascular health?", "Resting Heart Rate", "Heart Rate", "Heart Size","Resting Heart Rate"));
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What hormone is released you get 20-30 minutes of aerobic activity?", "Dopamine", "Serotonin", "BDNF","BDNF"));
+        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What activities should you avoid before going to sleep?", "Washing your dishes", "Doing some light reading", "Working on your laptop","Working on your laptop"));
     return questionsAndAnswerSets;
     }
 }
