@@ -6,7 +6,6 @@ public class Module {
 
     private String moduleName, moduleDescription;
     private int moduleIcon;
-
     public Module(String moduleName, String moduleDescription, int moduleIcon){
         this.moduleName = moduleName;
         this.moduleDescription = moduleDescription;
