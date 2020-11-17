@@ -2,6 +2,7 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class ModuleQuizActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public int quizScore = 0;
     private TextView tvQuestion, tvQuestionNumber;
     private RadioGroup radioGroup;
     private RadioButton rb_1, rb_2, rb_3;
@@ -22,6 +24,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<QuestionsAndAnswerSet> questionsAndAnswerSets;
     private int questionNumber = 1, arrayElementNumber = 0;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
+    private Boolean finalQuestion = false;
 
 
     @Override
@@ -41,30 +44,41 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
         questionsAndAnswerSets = QuestionsAndAnswerSet.getQuestionsAndAnswerSets();
 
-        displayQuestion(arrayElementNumber);
+        displayQuestion();
 
     }
 
-    String questionNumberDisplay;
-    public void displayQuestion (int arrayElementNumber){
-        //Load question and options
+    public void setQuestionsAndAnswerSet(){
         questionsAndAnswerSet = questionsAndAnswerSets.get(arrayElementNumber);
+    }
+    public QuestionsAndAnswerSet getQuestionsAndAnswerSet(){
+        return questionsAndAnswerSet;
+    }
+    String questionNumberDisplay;
+    public void displayQuestion (){
+        //Load question and options
         tvQuestion.setText(questionsAndAnswerSet.getQuestion());
         rb_1.setText(questionsAndAnswerSet.getOption_1());
         rb_2.setText(questionsAndAnswerSet.getOption_2());
         rb_3.setText(questionsAndAnswerSet.getOption_3());
         //Increase and update question number counter
-
         questionNumberDisplay = questionNumber+"/3";
         tvQuestionNumber.setText(questionNumberDisplay);
     }
 
     public void onClick (View v){
-        //nextQuestion();
-        increaseQuestionAndArrayNumber();
-        displayQuestion(arrayElementNumber);
-        if (questionNumber==3){
-            btNextQuestion.setText("Finish Quiz");
+        if (finalQuestion == true){
+            Intent intent = new Intent(this, QuizResultsActivity.class);
+            startActivity(intent);
+        } else {
+            increaseQuestionAndArrayNumber();
+            setQuestionsAndAnswerSet();
+            displayQuestion();
+            if (questionNumber == 3) {
+                btNextQuestion.setText("Finish Quiz");
+                btNextQuestion.setBackgroundColor(getResources().getColor(R.color.red));
+                finalQuestion = true;
+            }
         }
     }
 
@@ -77,6 +91,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
             case R.id.rb_1:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 1", Toast.LENGTH_LONG);
+                    markAnswer((RadioButton) findViewById(R.id.rb_1));
 
                     break;
             case R.id.rb_2:
@@ -103,6 +118,17 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         questionNumber++;
         arrayElementNumber++;
 
+    }
+
+    String chosenAnswer;
+    public void markAnswer (RadioButton optionView){
+        //get the selected answer
+        chosenAnswer = optionView.getText().toString();
+        //get the correct answer
+        //compare selected and correct answer and act accordingly
+        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_1())){
+            quizScore++;
+        }
     }
 
 }
