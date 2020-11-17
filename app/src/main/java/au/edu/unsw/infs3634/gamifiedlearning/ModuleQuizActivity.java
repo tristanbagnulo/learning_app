@@ -23,6 +23,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private int questionNumber = 1, arrayElementNumber = 0;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +102,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     public void increaseQuestionAndArrayNumber(){
         questionNumber++;
         arrayElementNumber++;
+
     }
 
 }
