@@ -3,6 +3,7 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private int questionNumber = 1, arrayElementNumber = 0;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
     private Boolean finalQuestion = false;
+    String radioText;
 
 
     @Override
@@ -80,32 +82,54 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
                 finalQuestion = true;
             }
         }
+        rb_1.setSelected(false);
+        rb_2.setSelected(false);
+        rb_3.setSelected(false);
     }
+
+
 
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
+        //boolean checked = ((RadioButton) view).isChecked();
+        //Check which radio button was selected and get the associated answer from it
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int id = group.getCheckedRadioButtonId();
+                RadioButton rb = findViewById(id);
+                radioText = rb.getText().toString();
+                Log.d("post-update-innerClass", radioText);
+            }
+        });
+        markAnswer(radioText);
+        Log.d("post-update-class", radioText);
+    }
+
+
+
+
 
         // Check which radio button was clicked
-        switch(view.getId()) {
+        /*switch(view.getId()) {
             case R.id.rb_1:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 1", Toast.LENGTH_LONG);
-                    markAnswer1((RadioButton) findViewById(R.id.rb_1));
+                    markAnswer1(R.id.rb_1);
                     break;
             case R.id.rb_2:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 2", Toast.LENGTH_LONG);
-                    markAnswer2((RadioButton) findViewById(R.id.rb_2));
+                    markAnswer2(R.id.rb_2);
                     break;
             case R.id.rb_3:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 3", Toast.LENGTH_LONG);
-                markAnswer3((RadioButton) findViewById(R.id.rb_3));
+                //markAnswer3((RadioButton) findViewById(R.id.rb_3));
                 break;
-        }
-        toast.show();
-    }
+        }*/
+        //toast.show();
+
 
     public int getArrayElementNumber(){
         return arrayElementNumber;
@@ -121,33 +145,14 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    String chosenAnswer;
-    public void markAnswer1 (RadioButton optionView){
-        //get the selected answer
-        chosenAnswer = optionView.getText().toString();
-        //get the correct answer
+
+    public void markAnswer (String chosenAnswer){
         //compare selected and correct answer and act accordingly
-        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_1())){
+        Log.d("markAnswerClass", chosenAnswer);
+        if(chosenAnswer.equals(questionsAndAnswerSet.getAnswer())){
             quizScore++;
         }
     }
-    public void markAnswer2 (RadioButton optionView){
-        //get the selected answer
-        chosenAnswer = optionView.getText().toString();
-        //get the correct answer
-        //compare selected and correct answer and act accordingly
-        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_2())){
-            quizScore++;
-        }
-    }
-    public void markAnswer3 (RadioButton optionView){
-        //get the selected answer
-        chosenAnswer = optionView.getText().toString();
-        //get the correct answer
-        //compare selected and correct answer and act accordingly
-        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_3())){
-            quizScore++;
-        }
-    }
+
 
 }
