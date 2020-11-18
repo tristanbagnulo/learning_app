@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="red">#E32424</color>
+    <color name="oneOrLessGreyRed">#978888</color>
+    <color name="twoOfThreeYellow">#BDA458</color>
+    <color name="threeOfThreeGreen">#4CAF50</color>
+
 </resources>

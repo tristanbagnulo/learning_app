@@ -38,12 +38,11 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         rb_1 = findViewById(R.id.rb_1);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
-
         btNextQuestion = findViewById(R.id.btNextQuestion);
         btNextQuestion.setOnClickListener(this);
 
         questionsAndAnswerSets = QuestionsAndAnswerSet.getQuestionsAndAnswerSets();
-
+        questionsAndAnswerSet = questionsAndAnswerSets.get(0);
         displayQuestion();
 
     }
@@ -67,9 +66,10 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void onClick (View v){
-        if (finalQuestion == true){
+        if (finalQuestion){
             Intent intent = new Intent(this, QuizResultsActivity.class);
             startActivity(intent);
+            intent.putExtra("Score", quizScore);
         } else {
             increaseQuestionAndArrayNumber();
             setQuestionsAndAnswerSet();
@@ -91,17 +91,18 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
             case R.id.rb_1:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 1", Toast.LENGTH_LONG);
-                    markAnswer((RadioButton) findViewById(R.id.rb_1));
-
+                    markAnswer1((RadioButton) findViewById(R.id.rb_1));
                     break;
             case R.id.rb_2:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 2", Toast.LENGTH_LONG);
+                    markAnswer2((RadioButton) findViewById(R.id.rb_2));
                     break;
             case R.id.rb_3:
                 if (checked)
                     toast = Toast.makeText(getApplicationContext(), "Option 3", Toast.LENGTH_LONG);
-                    break;
+                markAnswer3((RadioButton) findViewById(R.id.rb_3));
+                break;
         }
         toast.show();
     }
@@ -121,12 +122,30 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     String chosenAnswer;
-    public void markAnswer (RadioButton optionView){
+    public void markAnswer1 (RadioButton optionView){
         //get the selected answer
         chosenAnswer = optionView.getText().toString();
         //get the correct answer
         //compare selected and correct answer and act accordingly
         if(chosenAnswer.equals(questionsAndAnswerSet.getOption_1())){
+            quizScore++;
+        }
+    }
+    public void markAnswer2 (RadioButton optionView){
+        //get the selected answer
+        chosenAnswer = optionView.getText().toString();
+        //get the correct answer
+        //compare selected and correct answer and act accordingly
+        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_2())){
+            quizScore++;
+        }
+    }
+    public void markAnswer3 (RadioButton optionView){
+        //get the selected answer
+        chosenAnswer = optionView.getText().toString();
+        //get the correct answer
+        //compare selected and correct answer and act accordingly
+        if(chosenAnswer.equals(questionsAndAnswerSet.getOption_3())){
             quizScore++;
         }
     }
