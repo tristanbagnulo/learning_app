@@ -19,6 +19,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     public int quizScore = 0;
     private TextView tvQuestion, tvQuestionNumber;
     private RadioGroup radioGroup;
+    private RadioButton radioButton;
     private RadioButton rb_1, rb_2, rb_3;
     private Button btNextQuestion;
     private Toast toast;
@@ -37,6 +38,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         tvQuestion = findViewById(R.id.tvQuestion);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
         radioGroup = findViewById(R.id.radioGroup);
+        radioGroup.setOnClickListener(this);
         rb_1 = findViewById(R.id.rb_1);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
@@ -68,6 +70,20 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void onClick (View v){
+
+        switch(v.getId()){
+            case R.id.btNextQuestion:
+                updateQuestion(v);
+                break;
+            case R.id.rb_1:
+            case R.id.rb_2:
+            case R.id.rb_3:
+                onRadioButtonClicked(v);
+                break;
+        }
+    }
+
+    public void updateQuestion(View v){
         if (finalQuestion){
             Intent intent = new Intent(this, QuizResultsActivity.class);
             startActivity(intent);
@@ -90,6 +106,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
 
     public void onRadioButtonClicked(View view) {
+        Log.d("Clicked","Radio button clicked");
         // Is the button now checked?
         //boolean checked = ((RadioButton) view).isChecked();
         //Check which radio button was selected and get the associated answer from it
@@ -97,13 +114,14 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int id = group.getCheckedRadioButtonId();
+                Log.d("integer","id");
                 RadioButton rb = findViewById(id);
                 radioText = rb.getText().toString();
-                Log.d("post-update-innerClass", radioText);
+                Log.d("post-update-innerClass", radioText+"|DefaultText");
             }
         });
-        markAnswer(radioText);
-        Log.d("post-update-class", radioText);
+        /*markAnswer(radioText);
+        Log.d("post-update-class", radioText+"|DefaultText");*/
     }
 
 
@@ -148,7 +166,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
     public void markAnswer (String chosenAnswer){
         //compare selected and correct answer and act accordingly
-        Log.d("markAnswerClass", chosenAnswer);
+        Log.d("markAnswerClass", chosenAnswer+"|DefaultText");
         if(chosenAnswer.equals(questionsAndAnswerSet.getAnswer())){
             quizScore++;
         }
