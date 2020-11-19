@@ -1,12 +1,15 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     private ArrayList <Module> modules;
     private Module module;
     private TextView tvData;
+    private CheckBox readBox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +63,19 @@ tvData = findViewById(R.id.tvData);
                 searchModule(moduleName);
             }
         });
-    }
+        readBox = findViewById(R.id.checkBox);
+        readBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    readBox.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.threeOfThreeGreen));
+
+                } else {
+                    readBox.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
+                }
+
+            } });}
 
     private void setModuleName(){
         Intent intent = getIntent();
