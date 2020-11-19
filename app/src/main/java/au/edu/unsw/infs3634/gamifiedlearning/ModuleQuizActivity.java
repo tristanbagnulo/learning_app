@@ -1,6 +1,5 @@
 package au.edu.unsw.infs3634.gamifiedlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.util.Log;
@@ -11,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private int questionNumber = 1, arrayElementNumber = 0;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
     private Boolean finalQuestion = false;
-    String radioText;
+    String selectedAnswer;
 
 
     @Override
@@ -38,7 +39,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         tvQuestion = findViewById(R.id.tvQuestion);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
         radioGroup = findViewById(R.id.radioGroup);
-        radioGroup.setOnClickListener(this);
+        // Testing removal of: radioGroup.setOnClickListener(this);
         rb_1 = findViewById(R.id.rb_1);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
@@ -70,24 +71,17 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     public void onClick (View v){
-
-        switch(v.getId()){
-            case R.id.btNextQuestion:
-                updateQuestion(v);
-                break;
-            case R.id.rb_1:
-            case R.id.rb_2:
-            case R.id.rb_3:
-                onRadioButtonClicked(v);
-                break;
-        }
+        checkRadioButton(v);
     }
 
     public void updateQuestion(View v){
         if (finalQuestion){
+            //Toast.makeText(this, "Quiz Score in updateQuestion: " + quizScore, Toast.LENGTH_SHORT).show();
+            //Result, this function sees the right quiz score
             Intent intent = new Intent(this, QuizResultsActivity.class);
-            startActivity(intent);
             intent.putExtra("Score", quizScore);
+            startActivity(intent);
+
         } else {
             increaseQuestionAndArrayNumber();
             setQuestionsAndAnswerSet();
@@ -105,49 +99,19 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
 
 
-    public void onRadioButtonClicked(View view) {
-        Log.d("Clicked","Radio button clicked");
-        // Is the button now checked?
-        //boolean checked = ((RadioButton) view).isChecked();
-        //Check which radio button was selected and get the associated answer from it
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int id = group.getCheckedRadioButtonId();
-                Log.d("integer","id");
-                RadioButton rb = findViewById(id);
-                radioText = rb.getText().toString();
-                Log.d("post-update-innerClass", radioText+"|DefaultText");
-            }
-        });
-        /*markAnswer(radioText);
-        Log.d("post-update-class", radioText+"|DefaultText");*/
+    public void checkRadioButton(View view) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = findViewById(radioId);
+        selectedAnswer = radioButton.getText().toString();
+        //Toast.makeText(this, "Selected Radio Button: " + selectedAnswer, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Correct Answer: " + questionsAndAnswerSet.getAnswer(), Toast.LENGTH_SHORT).show();
+        if(selectedAnswer.equals(questionsAndAnswerSet.getAnswer())){
+            quizScore++;
+            //Toast.makeText(this, "Score: " + quizScore, Toast.LENGTH_SHORT).show();
+        }
+        updateQuestion(view);
+
     }
-
-
-
-
-
-        // Check which radio button was clicked
-        /*switch(view.getId()) {
-            case R.id.rb_1:
-                if (checked)
-                    toast = Toast.makeText(getApplicationContext(), "Option 1", Toast.LENGTH_LONG);
-                    markAnswer1(R.id.rb_1);
-                    break;
-            case R.id.rb_2:
-                if (checked)
-                    toast = Toast.makeText(getApplicationContext(), "Option 2", Toast.LENGTH_LONG);
-                    markAnswer2(R.id.rb_2);
-                    break;
-            case R.id.rb_3:
-                if (checked)
-                    toast = Toast.makeText(getApplicationContext(), "Option 3", Toast.LENGTH_LONG);
-                //markAnswer3((RadioButton) findViewById(R.id.rb_3));
-                break;
-        }*/
-        //toast.show();
-
 
     public int getArrayElementNumber(){
         return arrayElementNumber;
@@ -160,17 +124,6 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     public void increaseQuestionAndArrayNumber(){
         questionNumber++;
         arrayElementNumber++;
-
     }
-
-
-    public void markAnswer (String chosenAnswer){
-        //compare selected and correct answer and act accordingly
-        Log.d("markAnswerClass", chosenAnswer+"|DefaultText");
-        if(chosenAnswer.equals(questionsAndAnswerSet.getAnswer())){
-            quizScore++;
-        }
-    }
-
 
 }
