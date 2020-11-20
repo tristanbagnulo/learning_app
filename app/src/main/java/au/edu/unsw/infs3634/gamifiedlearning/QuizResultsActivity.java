@@ -10,11 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class QuizResultsActivity extends AppCompatActivity {
 
     private TextView tvResultsBanner, tvQuizScore;
     private ConstraintLayout clScreen;
     Button btRedirect;
+    // 1.1 - Get a DatabaseReference
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,11 @@ public class QuizResultsActivity extends AppCompatActivity {
         //Results - QuizResultsActivity is not receiving the Score from the ModuleQuizActivity
 
         setDisplay(quizScore);
+
+        //1.2 - Get a database reference
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Write user's score for the module to Firebase
 
         btRedirect = (Button) findViewById(R.id.btRedirect);
 

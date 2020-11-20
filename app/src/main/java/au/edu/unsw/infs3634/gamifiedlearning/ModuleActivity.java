@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class ModuleActivity extends AppCompatActivity implements View.OnClickListener{
@@ -25,15 +28,22 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     private Module module;
     private TextView tvData;
     private CheckBox readBox;
+
+    // 1.1 - Get a DatabaseReference
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module);
 
+        //1.2 - Get a database reference
+        mDatabase = FirebaseDatabase.getInstance().getReference("note");
+
         tvDescription = findViewById(R.id.tvDesctiption);
-tvData = findViewById(R.id.tvData);
+        tvData = findViewById(R.id.tvData);
         setModuleName();
-       modules = Module.getModules();
+        modules = Module.getModules();
         for (final Module module : modules) {
 
             if(moduleName.equals(module.getModuleName()));
@@ -41,13 +51,7 @@ tvData = findViewById(R.id.tvData);
                 tvDescription.setText(module.getModuleDescription());
                 tvData.setText(module.getModuleData());
             }
-
-
         }
-
-
-
-
 
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleName.setText(getModuleName()+" Module");
@@ -81,6 +85,15 @@ tvData = findViewById(R.id.tvData);
         Intent intent = getIntent();
         moduleName = intent.getStringExtra("Module Name");
 
+    }
+
+    private void addNote(){
+
+        //2.1 - Create unique string inside of Note. getKey() gets that key for us.
+        String id = mDatabase.push().getKey();
+
+        //2.2 - Use setValue() method to store the notes into the Firebase database
+        mDatabase.child(id).setValue(note);
     }
 
     private String getModuleName(){

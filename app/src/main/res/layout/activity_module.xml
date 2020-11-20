@@ -6,67 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".ModuleActivity">
 
-    <TextView
-        android:id="@+id/tvModuleName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="MODULE ACTIVITY"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="112dp">
 
-    <Button
-        android:id="@+id/btAttemptQuiz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Attempt Quiz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btMoreInfo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp">
 
-    <Button
-        android:id="@+id/btMoreInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:text="FInd Out More"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvModuleName" />
+            <TextView
+                android:id="@+id/tvModuleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MODULE NAME"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/tvDesctiption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="25dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvModuleName" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
 
-    <TextView
-        android:id="@+id/tvData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDesctiption" />
+            <TextView
+                android:id="@+id/tvDesctiption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Description" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Did you read it?"
-        android:textColor="#F44336"
-        app:layout_constraintBottom_toTopOf="@+id/btMoreInfo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <TextView
+                android:id="@+id/tvData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <Button
+                android:id="@+id/btMoreInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find Out More" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <Button
+                android:id="@+id/btAttemptQuiz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attempt Quiz" />
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Did you read it?"
+                android:textColor="#F44336" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="341dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Add notes here"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
