@@ -31,7 +31,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     private TextView tvData;
     private CheckBox readBox;
     private EditText etMakeNotes;
-    private Button btMakeNotes;
+    private Button btMakeNotes, btSeeMyNotes;
 
     // 1.1 - Get a DatabaseReference
     private DatabaseReference mDatabase;
@@ -86,6 +86,14 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View v) {
                 setNote();
+            }
+        });
+        btSeeMyNotes = findViewById(R.id.btSeeMyNotes);
+        btSeeMyNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ModuleActivity.this, NotesActivity.class);
+                startActivity(intent);
             }
         });
     }
