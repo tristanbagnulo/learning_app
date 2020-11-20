@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,6 +30,8 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     private Module module;
     private TextView tvData;
     private CheckBox readBox;
+    private EditText etMakeNotes;
+    private Button btMakeNotes;
 
     // 1.1 - Get a DatabaseReference
     private DatabaseReference mDatabase;
@@ -52,16 +56,12 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                 tvData.setText(module.getModuleData());
             }
         }
-
         tvModuleName = findViewById(R.id.tvModuleName);
         tvModuleName.setText(getModuleName()+" Module");
         btMoreInfo = findViewById(R.id.btMoreInfo);
         btAttemptQuiz = findViewById(R.id.btAttemptQuiz);
         btAttemptQuiz.setOnClickListener(this);
         btMoreInfo.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View v) {
                 searchModule(moduleName);
@@ -78,8 +78,17 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
                 } else {
                     readBox.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
                 }
-
-            } });}
+            }
+        });
+        etMakeNotes = findViewById(R.id.etAddNotes);
+        btMakeNotes = findViewById(R.id.btMakeNotes);
+        btMakeNotes.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                setNote();
+            }
+        });
+    }
 
     private void setModuleName(){
         Intent intent = getIntent();
@@ -87,13 +96,22 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    String note;
+    private void setNote(){
+        //Accept text input from the user and assign to String variable 'note'
+        note = etMakeNotes.getText().toString().trim();
+        Toast.makeText(this, "Notes entered are: " + note, Toast.LENGTH_LONG).show();
+        //Clear contents of the Plain Text widget for allow space for new notes
+        etMakeNotes.setText("");
+    }
     private void addNote(){
+        //Aim: store the note with a unique ID in Firebase's Realtime Database
 
         //2.1 - Create unique string inside of Note. getKey() gets that key for us.
         String id = mDatabase.push().getKey();
 
         //2.2 - Use setValue() method to store the notes into the Firebase database
-        mDatabase.child(id).setValue(note);
+        mDatabase.child("note").setValue(note);
     }
 
     private String getModuleName(){

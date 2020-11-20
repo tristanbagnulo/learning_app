@@ -91,13 +91,26 @@
                 />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/etAddNotes"
                 android:layout_width="341dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
                 android:hint="Add notes here"
                 android:inputType="textPersonName" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                />
+
+            <Button
+                android:id="@+id/btMakeNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Make Notes" />
+
+
         </LinearLayout>
     </ScrollView>
 
