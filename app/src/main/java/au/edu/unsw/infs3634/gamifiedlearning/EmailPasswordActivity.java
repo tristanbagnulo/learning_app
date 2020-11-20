@@ -96,7 +96,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
                 if(task.isSuccessful()){
                     //redirect to user profile
                     startActivity(new Intent(EmailPasswordActivity.this , ProfileActivity.class));

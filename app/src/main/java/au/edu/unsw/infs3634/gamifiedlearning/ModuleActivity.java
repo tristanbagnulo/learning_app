@@ -103,15 +103,16 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         Toast.makeText(this, "Notes entered are: " + note, Toast.LENGTH_LONG).show();
         //Clear contents of the Plain Text widget for allow space for new notes
         etMakeNotes.setText("");
+        uploadNote();
     }
-    private void addNote(){
+    private void uploadNote(){
         //Aim: store the note with a unique ID in Firebase's Realtime Database
 
         //2.1 - Create unique string inside of Note. getKey() gets that key for us.
         String id = mDatabase.push().getKey();
 
         //2.2 - Use setValue() method to store the notes into the Firebase database
-        mDatabase.child("note").setValue(note);
+        mDatabase.child(id).setValue(note);
     }
 
     private String getModuleName(){
