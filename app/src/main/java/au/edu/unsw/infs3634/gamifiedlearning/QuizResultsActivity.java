@@ -20,6 +20,8 @@ public class QuizResultsActivity extends AppCompatActivity {
     Button btRedirect;
     // 1.1 - Get a DatabaseReference
     private DatabaseReference mDatabase;
+    Button btShare;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class QuizResultsActivity extends AppCompatActivity {
         tvQuizScore = findViewById(R.id.tvQuizScore);
 
         Intent intent = getIntent();
-        int quizScore = intent.getIntExtra("Score", 0);
+        final int quizScore = intent.getIntExtra("Score", 0);
         //Toast.makeText(this, "Received Quiz Score: " + quizScore, Toast.LENGTH_SHORT).show();
         //Results - QuizResultsActivity is not receiving the Score from the ModuleQuizActivity
 
@@ -43,9 +45,18 @@ public class QuizResultsActivity extends AppCompatActivity {
         //Write user's score for the module to Firebase
 
         btRedirect = (Button) findViewById(R.id.btRedirect);
+        btShare = (Button) findViewById(R.id.btShare);
 
         redirect(quizScore);
-
+        btShare.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        String shareBody = "I just scored "+quizScore+"!!!";
+        shareIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+        startActivity(Intent.createChooser(shareIntent,"Share using"));
+    }
+});
     }
 
     public void setDisplay(int score) {
