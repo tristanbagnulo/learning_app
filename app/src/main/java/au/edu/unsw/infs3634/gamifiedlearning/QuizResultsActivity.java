@@ -51,10 +51,15 @@ public class QuizResultsActivity extends AppCompatActivity {
         btShare.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
         String shareBody = "I just scored "+quizScore+"!!!";
-        shareIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
-        startActivity(Intent.createChooser(shareIntent,"Share using"));
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,shareBody);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
     }
 });
     }
@@ -79,7 +84,7 @@ public class QuizResultsActivity extends AppCompatActivity {
         }
 
     public void redirect(int score) {
-        if (score >= 2) {
+        if (score == 3) {
             btRedirect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -91,7 +96,7 @@ public class QuizResultsActivity extends AppCompatActivity {
 
         }
 
-        if (score <= 1) {
+        if (score <= 2) {
             btRedirect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

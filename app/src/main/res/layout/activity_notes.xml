@@ -46,4 +46,12 @@
         android:text="Prev Note"
         app:layout_constraintStart_toStartOf="@+id/tvNotesText"
         app:layout_constraintTop_toBottomOf="@+id/tvNotesText" />
+
+    <ListView
+        android:layout_width="410dp"
+        android:layout_height="539dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btPreviousNote" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

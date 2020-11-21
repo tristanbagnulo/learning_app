@@ -39,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.tvModuleName.setText(module.getModuleName());
         holder.ivModuleIcon.setImageResource(module.getModuleIcon());
+        holder.tvModuleDescription.setText(module.getModuleDescription());
 
     }
 
@@ -49,7 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tvModuleName;
+        TextView tvModuleName, tvModuleDescription;
         ImageView ivModuleIcon;
         OnClickListener onClickListener;
 
@@ -57,6 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(itemView);
             tvModuleName = itemView.findViewById(R.id.tvModuleName);
             ivModuleIcon = itemView.findViewById(R.id.ivModuleIcon);
+            tvModuleDescription = itemView.findViewById(R.id.tvModuleDescription);
             this.onClickListener = onClickListener;
 
             itemView.setOnClickListener(this);
