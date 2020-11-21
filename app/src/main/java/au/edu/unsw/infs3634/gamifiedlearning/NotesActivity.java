@@ -28,7 +28,10 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("note")/*.child("-MMZylGBGOlhsu3p0Eso")*/;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("note");
+
+
 
         btNextNote = findViewById(R.id.btNextNote);
         btNextNote.setOnClickListener(new View.OnClickListener() {
@@ -49,16 +52,17 @@ public class NotesActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String note = snapshot.getValue().toString();
+                String note = snapshot.getChildren().toString();
                 tvNotesText.setText(note);
                 Toast.makeText(NotesActivity.this, note, Toast.LENGTH_SHORT).show();
 
-                for (DataSnapshot childSnapshot: snapshot.getChildren()) {
+                /*for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     String key = childSnapshot.getKey();
+                }*/
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
