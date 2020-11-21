@@ -56,12 +56,12 @@ public class Module {
         modules.add(new Module("Heart", "How to look after your heart health", R.drawable.heart,"The heart is a part of the circulatory system, it is made up of atria, ventricles, valves, arteries and veins. Its carries oxygen and other nutrients to all the bodies organs to stay healthy and work properly. It is a muscle itself, to maintain heart health it is important that you keep active as it needs to get strengthened as well. Additionally, losing weight and having a healthier diet is better for you heart and reducing your cholesterol can help as it narrows your arteries making your heart work harder and increasing your risk of heart disease.\n" +
                 "https://www.youtube.com/watch?v=dHGI9O6m3B0&ab_channel=HeartFoundation\n"));
 
-<<<<<<< Updated upstream
+/*<<<<<<< Updated upstream
 
 =======
-        /*modules.add(new Module("Teath", "How to look after your teath health", R.drawable.heart,"1 in 25 people over 15 years old have not natural teeth left. It is important to brush your teeth thoroughly twice a day and floss daily as good dental health can prevent gum disease, tooth decay, reduce tooth sensitivity and bad breath. Additionally, drinking matter between meals and seeing your dentist at least yearly for a clean, limiting sugary drink and coffee are more important ways to make sure that you have good dental health. And if you a snacker you may want to brush your teeth more regularly as bacteria can start forming plaque on teeth just 20 minutes after eating!\n" +
-                "https://www.youtube.com/watch?v=4WWtnBH_ZQQ&feature=emb_title&ab_channel=UICCollegeofDentistry \n"));*/
->>>>>>> Stashed changes
+        *//*modules.add(new Module("Teath", "How to look after your teath health", R.drawable.heart,"1 in 25 people over 15 years old have not natural teeth left. It is important to brush your teeth thoroughly twice a day and floss daily as good dental health can prevent gum disease, tooth decay, reduce tooth sensitivity and bad breath. Additionally, drinking matter between meals and seeing your dentist at least yearly for a clean, limiting sugary drink and coffee are more important ways to make sure that you have good dental health. And if you a snacker you may want to brush your teeth more regularly as bacteria can start forming plaque on teeth just 20 minutes after eating!\n" +
+                "https://www.youtube.com/watch?v=4WWtnBH_ZQQ&feature=emb_title&ab_channel=UICCollegeofDentistry \n"));*//*
+>>>>>>> Stashed changes*/
         return modules;
     }
 
