@@ -6,6 +6,10 @@ public class QuestionsAndAnswerSet {
 
     public String question, option_1, option_2, option_3, answer;
 
+    //This just holds Question, Options and Answer set objects. These are drawn from in the quiz activity
+    //They're just collection of a question and a few options for users to choose from and a correct answer.
+    //Same principle here as the Module Activity.
+
     public QuestionsAndAnswerSet (String question, String option_1, String option_2, String option_3, String answer){
         this.question = question;
         this.option_1 = option_1;

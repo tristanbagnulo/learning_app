@@ -40,10 +40,14 @@ public class NotesActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //Places a listener for changes at the reference location "note" in Firebase
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //First it clears the list elements to start over
                 noteList.clear();
+
+                //For each String within the note node in Firebase it is added to the noteList
                 for(DataSnapshot noteSnapshot : snapshot.getChildren()){
                     String note = noteSnapshot.getValue().toString();
                     noteList.add(note);

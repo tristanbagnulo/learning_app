@@ -2,6 +2,9 @@ package au.edu.unsw.infs3634.gamifiedlearning;
 
 public class User {
 
+    //User objects are sent to Firebase.
+
+    //This document is of the same design as the Module.java and QuestionAndAnswersSet.java classes
     public String fullName, age, email;
 
     //Constructor #1 - Allows you just to access these variables so it is empty

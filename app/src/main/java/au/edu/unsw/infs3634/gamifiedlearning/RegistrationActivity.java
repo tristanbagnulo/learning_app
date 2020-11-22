@@ -28,6 +28,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     private FirebaseAuth mAuth;
 
+    //Using Firebase authentication, the user can create a new account that allows them to login
+    //in via the sign in page (EmailPassWordActivity).
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +108,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         setAge(finalAge);
         setFullName(finalFullName);
 
+        //Using Firebase libraries, create the user data and send the info to Firebase
         mAuth.createUserWithEmailAndPassword(finalEmail, finalPassword)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

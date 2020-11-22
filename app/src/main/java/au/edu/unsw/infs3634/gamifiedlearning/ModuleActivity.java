@@ -41,15 +41,17 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module);
 
-        //1.2 - Get a database reference
+        //1.2- Get a database reference (cont.)
         mDatabase = FirebaseDatabase.getInstance().getReference("note");
 
         tvDescription = findViewById(R.id.tvDesctiption);
         tvData = findViewById(R.id.tvData);
         setModuleName();
         modules = Module.getModules();
-        for (final Module module : modules) {
 
+        //Iterate through the array list of modules to get the one that was selected and display that
+        //module's data
+        for (final Module module : modules) {
             if(moduleName.equals(module.getModuleName()));
             {
                 tvDescription.setText(module.getModuleDescription());
@@ -68,10 +70,12 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
         readBox = findViewById(R.id.checkBox);
+
+        //Adds a little gamification flare for the user. Green text follows completion of task
+        // (positive reinforcement).
         readBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (isChecked) {
                     readBox.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.threeOfThreeGreen));
 
@@ -98,12 +102,14 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+    //Retrieves the selected module name from previous activity
     private void setModuleName(){
         Intent intent = getIntent();
         moduleName = intent.getStringExtra("Module Name");
 
     }
 
+    //Takes user input
     String note;
     private void setNote(){
         //Accept text input from the user and assign to String variable 'note'
@@ -113,6 +119,8 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         etMakeNotes.setText("");
         uploadNote();
     }
+
+    //Uploads the note into Firebase under the "note" entity (referenced above)
     private void uploadNote(){
         //Aim: store the note with a unique ID in Firebase's Realtime Database
 
@@ -127,12 +135,15 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         return moduleName;
     }
 
+    //When user clicks "Attempt Quiz" they're showed to the quiz screen
     @Override
     public void onClick(View v){
         Intent intent = new Intent(this, ModuleQuizActivity.class);
         startActivity(intent);
         intent.putExtra("Module Name", getModuleName());
     }
+
+    //Sends user to a Google search of the health topic
     public void searchModule(String moduleName) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com/search?q=" + moduleName+" health"));
         startActivity(browserIntent);

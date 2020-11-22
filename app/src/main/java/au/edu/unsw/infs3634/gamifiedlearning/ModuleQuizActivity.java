@@ -39,7 +39,6 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         tvQuestion = findViewById(R.id.tvQuestion);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
         radioGroup = findViewById(R.id.radioGroup);
-        // Testing removal of: radioGroup.setOnClickListener(this);
         rb_1 = findViewById(R.id.rb_1);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
@@ -52,12 +51,18 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    //Retrieves a set of 1 question, 3 potential answers to select and the right answer from the
+    //QuestionsAndAnswerSet activity
     public void setQuestionsAndAnswerSet(){
         questionsAndAnswerSet = questionsAndAnswerSets.get(arrayElementNumber);
     }
+
+
     public QuestionsAndAnswerSet getQuestionsAndAnswerSet(){
         return questionsAndAnswerSet;
     }
+
+    //Displays the new question/answers set on the screen for the user to select from
     String questionNumberDisplay;
     public void displayQuestion (){
         //Load question and options
@@ -70,44 +75,46 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         tvQuestionNumber.setText(questionNumberDisplay);
     }
 
+    //When "Next Question" button is selected it launches the checkRadioButton activity
     public void onClick (View v){
         checkRadioButton(v);
     }
 
+
     public void updateQuestion(View v){
+
+        //When the final question has been entered, the results are displayed in the next activity
         if (finalQuestion){
-            //Toast.makeText(this, "Quiz Score in updateQuestion: " + quizScore, Toast.LENGTH_SHORT).show();
-            //Result, this function sees the right quiz score
             Intent intent = new Intent(this, QuizResultsActivity.class);
             intent.putExtra("Score", quizScore);
             startActivity(intent);
-
+        //If its not the final question, the question number and ArrayList element number from
+        //the ArrayList of QuestionsAndAnswerObjects are increased and the new set is displayed
         } else {
             increaseQuestionAndArrayNumber();
             setQuestionsAndAnswerSet();
             displayQuestion();
+            //If this is the final question, the button changes colour and text
             if (questionNumber == 3) {
                 btNextQuestion.setText("Finish Quiz");
                 btNextQuestion.setBackgroundColor(getResources().getColor(R.color.red));
+                //it is declared that this is the final question
                 finalQuestion = true;
             }
         }
-        rb_1.setSelected(false);
-        rb_2.setSelected(false);
-        rb_3.setSelected(false);
+
+
     }
 
-
-
+    //Find the id of the Radio button that is checked and draw the answer text from it
     public void checkRadioButton(View view) {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
         selectedAnswer = radioButton.getText().toString();
-        //Toast.makeText(this, "Selected Radio Button: " + selectedAnswer, Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "Correct Answer: " + questionsAndAnswerSet.getAnswer(), Toast.LENGTH_SHORT).show();
+        //Compare the text in the radio button to the correct answer and increase the score if
+        //the match
         if(selectedAnswer.equals(questionsAndAnswerSet.getAnswer())){
             quizScore++;
-            //Toast.makeText(this, "Score: " + quizScore, Toast.LENGTH_SHORT).show();
         }
         updateQuestion(view);
 
@@ -120,6 +127,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     public int getQuestionNumber(){
         return questionNumber;
     }
+
 
     public void increaseQuestionAndArrayNumber(){
         questionNumber++;

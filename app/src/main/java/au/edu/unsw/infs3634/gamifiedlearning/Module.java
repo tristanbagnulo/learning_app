@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Module {
 
+    //This class holds all of the data for a Module object. Each module object contains the name
+    //of the module, its description, an id referring to its icon and the data concerning the module
+
     private String moduleName, moduleDescription, moduleData;
     private int moduleIcon;
     public Module(String moduleName, String moduleDescription, int moduleIcon, String moduleData){

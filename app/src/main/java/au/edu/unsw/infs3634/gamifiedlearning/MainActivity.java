@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        //Displayes the app's name and theme fr 1 second before accepting login credentials
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

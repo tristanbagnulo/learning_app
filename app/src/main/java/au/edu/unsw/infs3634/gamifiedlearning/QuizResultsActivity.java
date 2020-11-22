@@ -15,6 +15,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class QuizResultsActivity extends AppCompatActivity {
 
+    //This activity displays the result of the user completing the quiz. It's UI depends on what
+    //the user's score is out of 3. If it's 3, it's green and they receive congratulations. If it's
+    //too they're reassured that they made a solid attempts and are encouraged to try again quickly.
+    //When a user scores 1, they're told they've failed and should reattempt.
+    //This plays on rules of gamification including positive and negative reinforcement.
+
     private TextView tvResultsBanner, tvQuizScore;
     private ConstraintLayout clScreen;
     Button btRedirect;
@@ -32,10 +38,9 @@ public class QuizResultsActivity extends AppCompatActivity {
         clScreen = findViewById(R.id.clScreen);
         tvQuizScore = findViewById(R.id.tvQuizScore);
 
+        //Get the user's score from the quiz activity using an Intent.
         Intent intent = getIntent();
         final int quizScore = intent.getIntExtra("Score", 0);
-        //Toast.makeText(this, "Received Quiz Score: " + quizScore, Toast.LENGTH_SHORT).show();
-        //Results - QuizResultsActivity is not receiving the Score from the ModuleQuizActivity
 
         setDisplay(quizScore);
 
@@ -64,17 +69,15 @@ public class QuizResultsActivity extends AppCompatActivity {
 });
     }
 
+    //Dynamic updating of the display and results
     public void setDisplay(int score) {
         if (score >= 3) {
             tvResultsBanner.setText("Congratulations!");
             clScreen.setBackgroundColor(getResources().getColor(R.color.threeOfThreeGreen));
-
-
         }
         if (score == 2) {
             tvResultsBanner.setText("So Close!");
             clScreen.setBackgroundColor(getResources().getColor(R.color.twoOfThreeYellow));
-
         }
         if (score <= 1) {
             tvResultsBanner.setText("Not quite. Try Again.");
@@ -83,6 +86,8 @@ public class QuizResultsActivity extends AppCompatActivity {
             tvQuizScore.setText("You answered " + score + " of 3 questions correctly.");
         }
 
+    //Buttons change depending on the user's score. If it's 3, they return to the module selection
+    //page, ProfileActivity. If it's 2 or less, they'regiven only the option to reattempt it.
     public void redirect(int score) {
         if (score == 3) {
             btRedirect.setOnClickListener(new View.OnClickListener() {
@@ -93,9 +98,7 @@ public class QuizResultsActivity extends AppCompatActivity {
                 }
             });
             btRedirect.setText("Home");
-
         }
-
         if (score <= 2) {
             btRedirect.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -106,17 +109,17 @@ public class QuizResultsActivity extends AppCompatActivity {
             });
             btRedirect.setText("Retry");
         }
-
     }
-        public void openProfileActivity () {
-            Intent profileActivityIntent = new Intent(this, ProfileActivity.class);
-            startActivity(profileActivityIntent);
-        }
-        public void retryQuiz () {
-            Intent retryIntent = new Intent(this, ModuleActivity.class);
-            startActivity(retryIntent);
-        }
 
+    public void openProfileActivity () {
+        Intent profileActivityIntent = new Intent(this, ProfileActivity.class);
+        startActivity(profileActivityIntent);
     }
+    public void retryQuiz () {
+        Intent retryIntent = new Intent(this, ModuleActivity.class);
+        startActivity(retryIntent);
+    }
+
+}
 
 

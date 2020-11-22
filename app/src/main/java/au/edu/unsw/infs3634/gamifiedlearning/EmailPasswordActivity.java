@@ -30,6 +30,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     private Button btSignIn;
     private ProgressBar progressBar;
 
+
+    //Here Users can sign in using registered user credentials or can select to register a new account
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.tvRegister:
+                //Sent to user registration activity
                 startActivity(new Intent(this, RegistrationActivity.class));
                 break;
             case R.id.btSignIn:
@@ -69,9 +73,13 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+
     private void userLogin() {
+        //Preparing user input for processing
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        //Throws errors if text is empty, the email address is invalid or if the passwrod has less
+        //than 6 characters
         if(email.isEmpty()){
             etEmail.setError("Email is required!");
             etEmail.requestFocus();
@@ -91,8 +99,11 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             return;
         }
 
+        //Loads a spinnering prograss circle animation to improve app usability
         progressBar.setVisibility(View.VISIBLE);
 
+        //If the login passes the above filters the user is directed to the next page. This involves
+        //using the authentication code provided by the Firebase Authentication sevice.
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -106,15 +117,4 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
         });
 
     }
-
-    /*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser);
-    }
-    */
-
 }

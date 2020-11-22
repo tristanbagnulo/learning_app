@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
+    //This is the Adapter for the RecyclerView where modules can be selected from
+
     private ArrayList<Module> modules;
     private OnClickListener mOnClickListener;
     private Context context;

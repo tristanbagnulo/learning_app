@@ -9,10 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.List;
 
+
+//This is the adapter for the listView that displays all of the notes made for a particular module
 public class NoteList extends ArrayAdapter<String> {
 
     private Activity context;
@@ -22,7 +23,6 @@ public class NoteList extends ArrayAdapter<String> {
         super(context, R.layout.list_layout, noteList);
         this.context = context;
         this.noteList = noteList;
-
     }
 
     @NonNull
