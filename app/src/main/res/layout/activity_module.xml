@@ -24,7 +24,7 @@
                 android:id="@+id/tvModuleName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MODULE NAME"
+                android:text="@string/module_name"
                 android:textSize="24sp" />
 
             <Space
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="Description" />
+                android:text="@string/description" />
 
             <Space
                 android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 android:id="@+id/tvData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data" />
+                android:text="@string/data" />
 
             <Space
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 android:id="@+id/btMoreInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Find Out More" />
+                android:text="@string/find_out_more" />
 
             <Space
                 android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                 android:id="@+id/btAttemptQuiz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Attempt Quiz" />
+                android:text="@string/attempt_quiz" />
 
 
             <Space
@@ -82,7 +82,7 @@
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Did you read it?"
+                android:text="@string/did_you_read_it"
                 android:textColor="#F44336" />
 
             <Space
@@ -96,8 +96,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:ems="10"
-                android:hint="Add notes here"
-                android:inputType="textPersonName" />
+                android:hint="@string/add_notes_here"
+                android:inputType="textPersonName"
+                android:autofillHints="" />
 
             <Space
                 android:layout_width="match_parent"
@@ -114,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="See My Notes"
+                    android:text="@string/see_my_notes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="25dp"
-                    android:text="Make Notes"
+                    android:text="@string/upload_notes"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

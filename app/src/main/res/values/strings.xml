@@ -4,4 +4,15 @@
     <string name="your_health_knowledge_app">Your health knowledge app</string>
     <string name="email_address">Email Address</string>
     <string name="module_icon">Module Icon</string>
+    <string name="description">Description</string>
+    <string name="data">Data</string>
+    <string name="module_name">MODULE NAME</string>
+    <string name="find_out_more">Find Out More</string>
+    <string name="attempt_quiz">Attempt Quiz</string>
+    <string name="did_you_read_it">Did you read it?</string>
+    <string name="add_notes_here">Add notes here</string>
+    <string name="see_my_notes">See My Notes</string>
+    <string name="upload_notes">Upload Notes</string>
+    <string name="module_description_here">Module Description Here</string>
+    <string name="select_a_learning_module">Select A Learning Module</string>
 </resources>
