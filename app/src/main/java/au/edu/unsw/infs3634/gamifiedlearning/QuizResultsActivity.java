@@ -48,9 +48,8 @@ public class QuizResultsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Write user's score for the module to Firebase
-
-        btRedirect = (Button) findViewById(R.id.btRedirect);
-        btShare = (Button) findViewById(R.id.btShare);
+        btRedirect = findViewById(R.id.btRedirect);
+        btShare = findViewById(R.id.btShare);
 
         redirect(quizScore);
         btShare.setOnClickListener(new View.OnClickListener() {
@@ -72,18 +71,19 @@ public class QuizResultsActivity extends AppCompatActivity {
     //Dynamic updating of the display and results
     public void setDisplay(int score) {
         if (score >= 3) {
-            tvResultsBanner.setText("Congratulations!");
+            tvResultsBanner.setText(R.string.congratulations_message);
             clScreen.setBackgroundColor(getResources().getColor(R.color.threeOfThreeGreen));
         }
         if (score == 2) {
-            tvResultsBanner.setText("So Close!");
+            tvResultsBanner.setText(R.string.so_close_text);
             clScreen.setBackgroundColor(getResources().getColor(R.color.twoOfThreeYellow));
         }
         if (score <= 1) {
-            tvResultsBanner.setText("Not quite. Try Again.");
+            tvResultsBanner.setText(R.string.try_again_text);
             clScreen.setBackgroundColor(getResources().getColor(R.color.oneOrLessGreyRed));
         }
-            tvQuizScore.setText("You answered " + score + " of 3 questions correctly.");
+            String youScored = "You answered " + score + " of 3 questions correctly.";
+            tvQuizScore.setText(youScored);
         }
 
     //Buttons change depending on the user's score. If it's 3, they return to the module selection
@@ -97,7 +97,7 @@ public class QuizResultsActivity extends AppCompatActivity {
 
                 }
             });
-            btRedirect.setText("Home");
+            btRedirect.setText(R.string.home_text);
         }
         if (score <= 2) {
             btRedirect.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +107,7 @@ public class QuizResultsActivity extends AppCompatActivity {
 
                 }
             });
-            btRedirect.setText("Retry");
+            btRedirect.setText(R.string.retry_text);
         }
     }
 

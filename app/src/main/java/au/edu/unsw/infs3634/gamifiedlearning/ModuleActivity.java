@@ -52,14 +52,14 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         //Iterate through the array list of modules to get the one that was selected and display that
         //module's data
         for (final Module module : modules) {
-            if(moduleName.equals(module.getModuleName()));
-            {
+            if(moduleName.equals(module.getModuleName())){
                 tvDescription.setText(module.getModuleDescription());
                 tvData.setText(module.getModuleData());
             }
         }
         tvModuleName = findViewById(R.id.tvModuleName);
-        tvModuleName.setText(getModuleName()+" Module");
+        String textModuleName = getModuleName()+getString(R.string.module_text);
+        tvModuleName.setText(textModuleName);
         btMoreInfo = findViewById(R.id.btMoreInfo);
         btAttemptQuiz = findViewById(R.id.btAttemptQuiz);
         btAttemptQuiz.setOnClickListener(this);
@@ -128,6 +128,7 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
         String id = mDatabase.push().getKey();
 
         //2.2 - Use setValue() method to store the notes into the Firebase database
+        assert id != null;
         mDatabase.child(id).setValue(note);
     }
 

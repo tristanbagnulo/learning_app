@@ -96,7 +96,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
             displayQuestion();
             //If this is the final question, the button changes colour and text
             if (questionNumber == 3) {
-                btNextQuestion.setText("Finish Quiz");
+                btNextQuestion.setText(R.string.finish_quiz);
                 btNextQuestion.setBackgroundColor(getResources().getColor(R.color.red));
                 //it is declared that this is the final question
                 finalQuestion = true;

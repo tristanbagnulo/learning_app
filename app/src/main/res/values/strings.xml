@@ -15,4 +15,11 @@
     <string name="upload_notes">Upload Notes</string>
     <string name="module_description_here">Module Description Here</string>
     <string name="select_a_learning_module">Select A Learning Module</string>
+    <string name="module_text">\" Module\"</string>
+    <string name="finish_quiz">Finish Quiz</string>
+    <string name="congratulations_message">Congratulations!</string>
+    <string name="so_close_text">So Close!</string>
+    <string name="try_again_text">Not quite. Try Again.</string>
+    <string name="home_text">Home</string>
+    <string name="retry_text">Retry</string>
 </resources>
