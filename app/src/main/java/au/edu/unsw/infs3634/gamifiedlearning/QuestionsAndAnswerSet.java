@@ -60,15 +60,20 @@ public class QuestionsAndAnswerSet {
 
     public static ArrayList<QuestionsAndAnswerSet> getQuestionsAndAnswerSets(){
         ArrayList<QuestionsAndAnswerSet> questionsAndAnswerSets = new ArrayList<>();
+        //Heart
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What is the key predictor of your cardio vascular health?", "Resting Heart Rate", "Heart Rate", "Heart Size","Resting Heart Rate"));
-        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What hormone is released you get 20-30 minutes of aerobic activity?", "Dopamine", "Serotonin", "BDNF","BDNF"));
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What age are you at high risk of heart disease?", "Under 20", "Between 20 and 45", "Over 45","Over 45"));
+        //questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What is not in the heart?", "bronchioles", "valves", "veins","bronchioles"));
+        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What system is the hear apart of?", "circulatory system", "endocrine system", "lymphatic system","circulatory system"));
+
+        //Muscular
+        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("How many muscles in your body?", "600", "400", "894","400"));
+        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("How can you reduce muscle tears?", "Stretching", "Running", "Heavy-weight lifting","Stretching"));
+        //Mental
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What activities should you avoid before going to sleep?", "Washing your dishes", "Doing some light reading", "Working on your laptop","Working on your laptop"));
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("How much water should you drink in a day?", "more that 6 liters", "5 liters", "2 liters","2 liters"));
+        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What hormone is released you get 20-30 minutes of aerobic activity?", "Dopamine", "Serotonin", "BDNF","BDNF"));
         questionsAndAnswerSets.add(new QuestionsAndAnswerSet("Recommended hours of sleep a day?", "10 hours", "6 hours", "8 hours","8 hours"));
-        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("How many muscles in your body?", "600", "400", "894","400"));
-        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What is not in the heart?", "bronchioles", "valves", "veins","bronchioles"));
-        questionsAndAnswerSets.add(new QuestionsAndAnswerSet("What system is the hear apart of?", "circulatory system", "endocrine system", "lymphatic system","circulatory system"));
     return questionsAndAnswerSets;
     }
 }

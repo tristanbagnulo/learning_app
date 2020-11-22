@@ -68,6 +68,9 @@ public class QuizResultsActivity extends AppCompatActivity {
 });
     }
 
+
+
+
     //Dynamic updating of the display and results
     public void setDisplay(int score) {
         if (score >= 3) {
@@ -116,7 +119,8 @@ public class QuizResultsActivity extends AppCompatActivity {
         startActivity(profileActivityIntent);
     }
     public void retryQuiz () {
-        Intent retryIntent = new Intent(this, ModuleActivity.class);
+        Intent retryIntent = new Intent(this, ModuleQuizActivity.class);
+        //retryIntent.putExtra("Module Attempted",)
         startActivity(retryIntent);
     }
 

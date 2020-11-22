@@ -36,6 +36,12 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_quiz);
 
+
+        Intent intent = getIntent();
+        String moduleName = getIntent().getStringExtra("Module name");
+
+        //setModuleQuestionGroup(moduleName);
+
         tvQuestion = findViewById(R.id.tvQuestion);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
         radioGroup = findViewById(R.id.radioGroup);
@@ -49,6 +55,12 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         questionsAndAnswerSet = questionsAndAnswerSets.get(0);
         displayQuestion();
 
+    }
+
+    private void setModuleQuestionGroup(String moduleName){
+        if (moduleName.equals("Heart")){
+            //DW not enough time
+        }
     }
 
     //Retrieves a set of 1 question, 3 potential answers to select and the right answer from the
