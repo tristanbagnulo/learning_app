@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-public class ModuleQuizActivity extends AppCompatActivity implements View.OnClickListener {
+public class ModuleQuizActivity extends AppCompatActivity {
 
     public int quizScore = 0;
     private TextView tvQuestion, tvQuestionNumber;
@@ -28,7 +28,7 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private int questionNumber = 1, arrayElementNumber;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
     private Boolean finalQuestion = false;
-    String selectedAnswer;
+    String selectedAnswer = "default";
     String moduleName;
 
 
@@ -52,7 +52,12 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
         btNextQuestion = findViewById(R.id.btNextQuestion);
-        btNextQuestion.setOnClickListener(this);
+        btNextQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkRadioButton(v);
+            }
+        });
 
         //questionsAndAnswerSet = questionsAndAnswerSets.get(0);
         displayQuestion();
@@ -102,9 +107,9 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     //When "Next Question" button is selected it launches the checkRadioButton activity
-    public void onClick (View v){
-        checkRadioButton(v);
-    }
+    /*public void onClick (View v){
+
+    }*/
 
 
     public void updateQuestion(View v){
@@ -133,17 +138,22 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     }
 
     //Find the id of the Radio button that is checked and draw the answer text from it
+
     public void checkRadioButton(View view) {
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = findViewById(radioId);
-        selectedAnswer = radioButton.getText().toString();
+
         //Compare the text in the radio button to the correct answer and increase the score if
         //the match
-        if(selectedAnswer.equals(questionsAndAnswerSet.getAnswer())){
-            quizScore++;
+        if (radioId == -1){
+            Toast.makeText(this, "Please select an option", Toast.LENGTH_LONG).show();
+        } else {
+            selectedAnswer = radioButton.getText().toString();
+            if(selectedAnswer.equals(questionsAndAnswerSet.getAnswer())){
+                quizScore++;
+            }
+            updateQuestion(view);
         }
-        updateQuestion(view);
-
     }
 
     public int getArrayElementNumber(){
