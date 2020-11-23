@@ -140,8 +140,9 @@ public class ModuleActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v){
         Intent intent = new Intent(this, ModuleQuizActivity.class);
+        Toast.makeText(this, "String in Module Activity: "+moduleName, Toast.LENGTH_LONG).show();
+        intent.putExtra("module_name", moduleName);
         startActivity(intent);
-        intent.putExtra("Module Name", getModuleName());
     }
 
     //Sends user to a Google search of the health topic

@@ -25,10 +25,11 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
     private Button btNextQuestion;
     private Toast toast;
     private ArrayList<QuestionsAndAnswerSet> questionsAndAnswerSets;
-    private int questionNumber = 1, arrayElementNumber = 0;
+    private int questionNumber = 1, arrayElementNumber;
     private QuestionsAndAnswerSet questionsAndAnswerSet;
     private Boolean finalQuestion = false;
     String selectedAnswer;
+    String moduleName;
 
 
     @Override
@@ -36,11 +37,13 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_module_quiz);
 
+        questionsAndAnswerSets = QuestionsAndAnswerSet.getQuestionsAndAnswerSets();
 
         Intent intent = getIntent();
-        String moduleName = getIntent().getStringExtra("Module name");
+        moduleName = intent.getStringExtra("module_name");
+        Toast.makeText(this, "String in Quiz Activity " + moduleName, Toast.LENGTH_LONG).show();
 
-        //setModuleQuestionGroup(moduleName);
+        setModuleQuestionGroup(moduleName);
 
         tvQuestion = findViewById(R.id.tvQuestion);
         tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
@@ -51,16 +54,27 @@ public class ModuleQuizActivity extends AppCompatActivity implements View.OnClic
         btNextQuestion = findViewById(R.id.btNextQuestion);
         btNextQuestion.setOnClickListener(this);
 
-        questionsAndAnswerSets = QuestionsAndAnswerSet.getQuestionsAndAnswerSets();
-        questionsAndAnswerSet = questionsAndAnswerSets.get(0);
+        //questionsAndAnswerSet = questionsAndAnswerSets.get(0);
         displayQuestion();
 
     }
 
-    private void setModuleQuestionGroup(String moduleName){
-        if (moduleName.equals("Heart")){
-            //DW not enough time
-        }
+    private void setModuleQuestionGroup(String tModuleName){
+        switch (tModuleName) {
+            case "Heart":
+                arrayElementNumber = 0;
+                break;
+            case "Muscle":
+                arrayElementNumber = 3;
+                break;
+            case "Mental":
+                arrayElementNumber = 6;
+                break;
+            default:
+                arrayElementNumber = 2;
+                break;
+        } ;
+        questionsAndAnswerSet = questionsAndAnswerSets.get(arrayElementNumber);
     }
 
     //Retrieves a set of 1 question, 3 potential answers to select and the right answer from the
